@@ -35,11 +35,8 @@
 
     /app_dev.php/list-posts
 
-
     /app_dev.php/list-posts-optimized
 
-
     /app_dev.php/update-posts
-
 
     /app_dev.php/update-posts-optimized
