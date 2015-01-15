@@ -2,6 +2,8 @@
 
 namespace Lensky\PerformanceBundle\Controller;
 
+use Lensky\PerformanceBundle\Entity\Post;
+use Lensky\PerformanceBundle\Entity\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -11,14 +13,14 @@ class DefaultController extends Controller
     /**
      * Get list of posts by not optimized query
      *
-     * @Route("/posts", name="list_posts")
+     * @Route("/list-posts", name="list_posts")
      * @Template(template="@LenskyPerformance/Default/list_posts.html.twig")
      *
      * @return array
      */
     public function listPostsAction()
     {
-        $posts = $this->getDoctrine()->getRepository('LenskyPerformanceBundle:Post')->findBy([], ['createdAt' => 'asc']);
+        $posts = $this->getDoctrine()->getRepository('LenskyPerformanceBundle:Post')->findAll();
 
         return array('posts' => $posts);
     }
@@ -26,14 +28,16 @@ class DefaultController extends Controller
     /**
      * Get list of posts by optimized query
      *
-     * @Route("/posts-optimized", name="list_posts_optimized")
+     * @Route("/list-posts-optimized", name="list_posts_optimized")
      * @Template(template="@LenskyPerformance/Default/list_posts.html.twig")
      *
      * @return array
      */
     public function listPostsOptimizedAction()
     {
-        $posts = $this->getDoctrine()->getRepository('LenskyPerformanceBundle:Post')->findPostsAndAuthors(['createdAt' => 'asc']);
+        /** @var PostRepository $postRepository */
+        $postRepository = $this->getDoctrine()->getRepository('LenskyPerformanceBundle:Post');
+        $posts = $postRepository->findAllPostsAndAuthors();
 
         return array('posts' => $posts);
     }
@@ -51,6 +55,7 @@ class DefaultController extends Controller
         $newCreatedAt = new \DateTime();
         $posts = $this->getDoctrine()->getRepository('LenskyPerformanceBundle:Post')->findAll();
 
+        /** @var Post $post */
         foreach ($posts as $post) {
             $post->setCreatedAt($newCreatedAt);
         }

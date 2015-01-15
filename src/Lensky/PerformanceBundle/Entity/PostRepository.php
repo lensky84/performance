@@ -3,7 +3,6 @@
 namespace Lensky\PerformanceBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * PostRepository
@@ -14,34 +13,17 @@ use Doctrine\ORM\QueryBuilder;
 class PostRepository extends EntityRepository
 {
     /**
-     * @var string
-     */
-    private $alias = 'p';
-
-    /**
-     * @param array $orderBy
+     * Find all posts with authors
      *
      * @return array | Post[]
      */
-    public function findPostsAndAuthors(array $orderBy)
+    public function findAllPostsAndAuthors()
     {
-        $qb = $this->createQueryBuilder($this->alias);
+        $qb = $this->createQueryBuilder('p');
         $qb->addSelect('a')
             ->innerJoin('p.author', 'a');
-        $this->addOrder($orderBy, $qb);
 
         return $qb->getQuery()->getResult();
-    }
-
-    /**
-     * @param array        $orderBy
-     * @param QueryBuilder $qb
-     */
-    private function addOrder(array $orderBy, QueryBuilder $qb)
-    {
-        foreach ($orderBy as $orderFieldName => $orderValue) {
-            $qb->addOrderBy($this->alias . '.' . $orderFieldName, $orderValue);
-        }
     }
 
     /**
