@@ -35,7 +35,7 @@ class PostRepository extends EntityRepository
      */
     public function updateCreatedAtForAllPosts(\DateTime $newCreatedAt)
     {
-        $qb = $this->createQueryBuilder($this->alias);
+        $qb = $this->createQueryBuilder('p');
         $qb->update()
             ->set('p.createdAt', ':newCreatedAt')
             ->setParameter('newCreatedAt', $newCreatedAt);
