@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% for post in posts %}
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>Author: {{ post.author.firstName }} {{ post.author.lastName }} created at {{ post.createdAt | date('d-m-Y H:i') }}</p>
+            <p>{{ post.text }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}

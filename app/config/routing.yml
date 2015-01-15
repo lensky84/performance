@@ -1,0 +1,5 @@
+lensky_performance:
+    resource: "@LenskyPerformanceBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
