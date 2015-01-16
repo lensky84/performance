@@ -42,4 +42,12 @@ class PostRepository extends EntityRepository
 
         return $qb->getQuery()->execute();
     }
+
+    /**
+     * @return array
+     */
+    public function findAllPostsAsArray()
+    {
+        return $this->createQueryBuilder('p')->getQuery()->getArrayResult();
+    }
 }

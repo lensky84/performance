@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Страницы с примерами</h1>
+    <h2>1. Загрузка всех необходимых связей</h2>
+    <p><a href="{{ path('list_posts') }}">Без оптимизации</a></p>
+    <p><a href="{{ path('list_posts_optimized') }}">С оптимизацией</a></p>
+    <h2>2. Обновление нескольких сущностей запросом</h2>
+    <p><a href="{{ path('update_posts') }}">Без оптимизации</a></p>
+    <p><a href="{{ path('update_posts_optimized') }}">С оптимизацией</a></p>
+    <h2>3. Использование Reference Proxies</h2>
+    <p><a href="{{ path('create_post', {'id':1}) }}">Без оптимизации</a></p>
+    <p><a href="{{ path('create_post_optimized', {'id':1}) }}">С оптимизацией</a></p>
+    <h2>4. Гидрация объектов</h2>
+    <p><a href="{{ path('list_posts_hydrated_objects') }}">Без оптимизации</a></p>
+    <p><a href="{{ path('list_posts_hydrated_array') }}">С оптимизацией</a></p>
+{% endblock %}

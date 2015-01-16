@@ -15,7 +15,7 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * Quantity of generated posts
      */
-    const POSTS_QUANTITY = 100;
+    const POSTS_QUANTITY = 1000;
 
     /**
      * {@inheritDoc}

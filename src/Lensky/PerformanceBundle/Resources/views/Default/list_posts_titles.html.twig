@@ -1,0 +1,7 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% for post in posts %}
+        <h2>{{ attribute(post, 'title') }}</h2>
+    {% endfor %}
+{% endblock %}
