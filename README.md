@@ -30,13 +30,3 @@
 5) Накатить фикстуры
 
     ./console doctrine:fixtures:load
-
-После этого результаты можно посмотреть на следующих страницах:
-
-    /app_dev.php/list-posts
-
-    /app_dev.php/list-posts-optimized
-
-    /app_dev.php/update-posts
-
-    /app_dev.php/update-posts-optimized
